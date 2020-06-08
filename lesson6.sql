@@ -27,10 +27,10 @@ from users limit 1;
 -- Найти 10 пользователей, которые проявляют наименьшую активность в использовании социальной сети.
 
 
-select A,  SUM(B) from
+select `ID`,  SUM(B) from
 (
-(SELECT user_id as A, count(user_id)as B FROM media group by user_id)
-union all (SELECT user_id as A, count(user_id) as B FROM users_communities group by user_id)
-union all (SELECT user_id as A, count(user_id) as B FROM likes group by user_id)
+(SELECT user_id as `ID`, count(user_id)as B FROM media group by user_id)
+union all (SELECT user_id as `ID`, count(user_id) as B FROM users_communities group by user_id)
+union all (SELECT user_id as `ID`, count(user_id) as B FROM likes group by user_id)
 ) as Z
-GROUP BY A order by SUM(B) limit 10;
+GROUP BY `ID` order by SUM(B) limit 10;
